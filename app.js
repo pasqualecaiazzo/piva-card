@@ -38,10 +38,13 @@ function initApp() {
     const urlParams = new URLSearchParams(window.location.search);
     const isEditor = urlParams.has('edit') || urlParams.has('editor');
     const btnToggle = document.getElementById('btnCreatorToggle');
+    const cardFooter = document.getElementById('cardFooter');
     if (isEditor) {
         btnToggle.classList.remove('hidden');
+        cardFooter.classList.remove('hidden');
     } else {
         btnToggle.classList.add('hidden');
+        cardFooter.classList.add('hidden');
     }
 }
 

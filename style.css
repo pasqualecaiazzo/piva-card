@@ -354,6 +354,41 @@ input:focus {
     text-align: center;
 }
 
+/* Mobile Stylesheet - Full Bleed 100% Vertical Height */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+        background-color: var(--bg-card);
+    }
+
+    .app-container {
+        max-width: 100%;
+        gap: 0;
+        height: 100vh;
+        height: -webkit-fill-available;
+    }
+
+    .card-wrapper {
+        border: none;
+        box-shadow: none;
+        height: 100%;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        padding: 24px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+    }
+}
+
 /* Print Stylesheet */
 @media print {
     body {
