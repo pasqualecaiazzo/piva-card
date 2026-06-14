@@ -1,0 +1,430 @@
+/* Design System & Custom Properties */
+:root {
+    --bg-app: #fcfcfc;
+    --bg-card: #ffffff;
+    --text-primary: #000000;
+    --text-secondary: #4a4a4a;
+    --text-muted: #8c8c8c;
+    --border-color: #000000;
+    --border-light: #e5e5e5;
+    --accent-bg: #f5f5f5;
+    --accent-highlight-bg: #000000;
+    --accent-highlight-text: #ffffff;
+    --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: 'Space Mono', Courier, monospace;
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --card-width: 440px;
+}
+
+/* Reset & Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: var(--card-width);
+}
+
+/* Card Styling - Premium Minimalist */
+.card-wrapper {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header {
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 15px;
+}
+
+.card-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 6px;
+}
+
+.company-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Information Grid */
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+.info-value-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.info-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    word-break: break-all;
+}
+
+.code-font {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+}
+
+/* Highlighted SDI Row */
+.highlight-row {
+    background-color: var(--accent-bg);
+    border: 1px solid var(--border-color);
+    padding: 10px 12px;
+}
+
+.highlight-value {
+    font-weight: 700;
+}
+
+/* Copy Button */
+.btn-copy {
+    background: transparent;
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.btn-copy:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-card);
+    border-color: var(--text-primary);
+}
+
+.btn-copy-highlight {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+    font-weight: 600;
+}
+
+.btn-copy-highlight:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-card);
+}
+
+.icon-copy, .icon-check {
+    stroke-width: 2px;
+    transition: transform 0.2s ease;
+}
+
+.btn-copy:active .icon-copy {
+    transform: scale(0.85);
+}
+
+/* QR Code Section */
+.qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid var(--border-light);
+    padding-top: 20px;
+}
+
+.qr-container {
+    background: var(--bg-card);
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#qrcodeCanvas {
+    width: 140px !important;
+    height: 140px !important;
+    display: block;
+}
+
+.qr-caption {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* Action Buttons Footer */
+.card-footer {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid var(--border-light);
+    padding-top: 15px;
+}
+
+.btn-primary, .btn-secondary {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 10px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all var(--transition-fast);
+    flex: 1;
+}
+
+.btn-primary {
+    background-color: var(--text-primary);
+    color: var(--bg-card);
+    border: 1px solid var(--text-primary);
+}
+
+.btn-primary:hover {
+    background-color: #333333;
+    border-color: #333333;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-bg);
+}
+
+/* Creator Form Styling */
+.creator-wrapper {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.creator-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.creator-header p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+@media (max-width: 380px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+input {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+input:focus {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.optional {
+    color: var(--text-muted);
+    text-transform: none;
+    font-weight: normal;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+.app-footer {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* Print Stylesheet */
+@media print {
+    body {
+        background: white;
+        color: black;
+        padding: 0;
+        margin: 0;
+        display: block;
+    }
+
+    .app-container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card-wrapper {
+        border: 1px solid black;
+        box-shadow: none;
+        margin: 20mm auto;
+        width: 85mm; /* Standard business card width */
+        min-height: 55mm; /* Standard business card height */
+        padding: 5mm;
+        page-break-inside: avoid;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .card-body {
+        gap: 10px;
+    }
+
+    .info-grid {
+        gap: 8px;
+    }
+
+    .info-row {
+        gap: 2px;
+    }
+
+    .info-label {
+        font-size: 6pt;
+    }
+
+    .info-value {
+        font-size: 9pt;
+    }
+
+    .code-font {
+        font-size: 9pt;
+    }
+
+    .highlight-row {
+        padding: 4px 6px;
+        background-color: #f0f0f0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .btn-copy {
+        display: none !important;
+    }
+
+    .qr-section {
+        padding-top: 8px;
+        gap: 4px;
+    }
+
+    #qrcodeCanvas {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .qr-caption {
+        font-size: 6pt;
+    }
+}
