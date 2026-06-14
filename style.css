@@ -122,6 +122,7 @@ body {
     font-weight: 500;
     color: var(--text-primary);
     word-break: break-all;
+    white-space: pre-line;
 }
 
 .code-font {
@@ -313,13 +314,17 @@ label {
     color: var(--text-secondary);
 }
 
-input {
+input, textarea {
     font-family: var(--font-sans);
     font-size: 0.95rem;
     padding: 10px 12px;
     border: 1px solid var(--border-color);
     outline: none;
     transition: all var(--transition-fast);
+}
+
+textarea {
+    resize: vertical;
 }
 
 input:focus {

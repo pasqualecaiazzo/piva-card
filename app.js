@@ -1,11 +1,10 @@
-// Default billing details (CAIAZZO GENNARO)
 const DEFAULT_DATA = {
     name: "CAIAZZO GENNARO",
     piva: "01451530057",
     cf: "CZZGNR60B29F839A",
     sdi: "KRRH6B9",
     pec: "",
-    address: "VIA ROMA 25 - 14031 GRANA (AT)"
+    address: "VIA ROMA 25\n14031 GRANA MONFERRATO (AT)"
 };
 
 let currentCardData = { ...DEFAULT_DATA };
@@ -34,6 +33,16 @@ function initApp() {
     renderCard(currentCardData);
     generateQRCode();
     prefillForm(currentCardData);
+
+    // Show Creator button only if query string has ?edit=true or ?editor=true
+    const urlParams = new URLSearchParams(window.location.search);
+    const isEditor = urlParams.has('edit') || urlParams.has('editor');
+    const btnToggle = document.getElementById('btnCreatorToggle');
+    if (isEditor) {
+        btnToggle.classList.remove('hidden');
+    } else {
+        btnToggle.classList.add('hidden');
+    }
 }
 
 /**
