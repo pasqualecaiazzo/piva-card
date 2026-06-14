@@ -1,3 +1,4 @@
+// Default billing details (CAIAZZO GENNARO)
 const DEFAULT_DATA = {
     name: "CAIAZZO GENNARO",
     piva: "01451530057",
@@ -7,45 +8,17 @@ const DEFAULT_DATA = {
     address: "VIA ROMA 25\n14031 GRANA MONFERRATO (AT)"
 };
 
-let currentCardData = { ...DEFAULT_DATA };
-
 // On Page Load
 window.addEventListener('DOMContentLoaded', () => {
     initApp();
 });
 
-// Watch for URL Hash changes (supports back/forward navigation)
-window.addEventListener('hashchange', () => {
-    initApp();
-});
-
 /**
- * Initializes the application by reading data from the URL or loading default data
+ * Initializes the application
  */
 function initApp() {
-    const hashData = getHashData();
-    if (hashData) {
-        currentCardData = hashData;
-    } else {
-        currentCardData = { ...DEFAULT_DATA };
-    }
-
-    renderCard(currentCardData);
+    renderCard(DEFAULT_DATA);
     generateQRCode();
-    prefillForm(currentCardData);
-
-    // Show Creator button only if query string has ?edit=true or ?editor=true
-    const urlParams = new URLSearchParams(window.location.search);
-    const isEditor = urlParams.has('edit') || urlParams.has('editor');
-    const btnToggle = document.getElementById('btnCreatorToggle');
-    const cardFooter = document.getElementById('cardFooter');
-    if (isEditor) {
-        btnToggle.classList.remove('hidden');
-        cardFooter.classList.remove('hidden');
-    } else {
-        btnToggle.classList.add('hidden');
-        cardFooter.classList.add('hidden');
-    }
 }
 
 /**
@@ -109,7 +82,7 @@ async function copyField(elementId, btn) {
  */
 function generateQRCode() {
     const canvas = document.getElementById('qrcodeCanvas');
-    const currentURL = window.location.href;
+    const currentURL = window.location.origin + window.location.pathname; // Just the clean base URL without query strings
 
     // We use the QRCode library loaded via CDN
     if (typeof QRCode !== 'undefined') {
@@ -127,85 +100,4 @@ function generateQRCode() {
     } else {
         console.warn('Libreria QRCode non caricata.');
     }
-}
-
-/**
- * Encodes the custom data to Base64 and updates the URL hash
- */
-function generateCustomCard(event) {
-    event.preventDefault();
-
-    const data = {
-        name: document.getElementById('inputName').value.trim().toUpperCase(),
-        piva: document.getElementById('inputPIVA').value.trim(),
-        cf: document.getElementById('inputCF').value.trim().toUpperCase(),
-        sdi: document.getElementById('inputSDI').value.trim().toUpperCase(),
-        pec: document.getElementById('inputPEC').value.trim(),
-        address: document.getElementById('inputAddress').value.trim()
-    };
-
-    try {
-        const encoded = encodeData(data);
-        window.location.hash = `data=${encoded}`;
-        toggleCreator(); // Close form and show card
-    } catch (e) {
-        console.error("Errore di codifica: ", e);
-        alert("Si è verificato un errore durante la generazione dei dati.");
-    }
-}
-
-/**
- * Prefills the creator form with current data
- */
-function prefillForm(data) {
-    document.getElementById('inputName').value = data.name || '';
-    document.getElementById('inputPIVA').value = data.piva || '';
-    document.getElementById('inputCF').value = data.cf || '';
-    document.getElementById('inputSDI').value = data.sdi || '';
-    document.getElementById('inputPEC').value = data.pec || '';
-    document.getElementById('inputAddress').value = data.address || '';
-}
-
-/**
- * Toggles the visibility of the creator form
- */
-function toggleCreator() {
-    const cardView = document.getElementById('cardView');
-    const creatorView = document.getElementById('creatorView');
-
-    if (creatorView.classList.contains('hidden')) {
-        creatorView.classList.remove('hidden');
-        cardView.classList.add('hidden');
-    } else {
-        creatorView.classList.add('hidden');
-        cardView.classList.remove('hidden');
-    }
-}
-
-/* Base64 Unicode helpers */
-function encodeData(obj) {
-    const str = JSON.stringify(obj);
-    return btoa(unescape(encodeURIComponent(str)));
-}
-
-function decodeData(base64Str) {
-    try {
-        const str = decodeURIComponent(escape(atob(base64Str)));
-        return JSON.parse(str);
-    } catch (e) {
-        console.error("Errore decodifica Base64:", e);
-        return null;
-    }
-}
-
-/**
- * Retrieves and decodes card data from the URL hash
- */
-function getHashData() {
-    const hash = window.location.hash;
-    if (hash && hash.startsWith('#data=')) {
-        const base64Str = hash.substring(6);
-        return decodeData(base64Str);
-    }
-    return null;
 }
