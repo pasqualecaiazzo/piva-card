@@ -131,16 +131,7 @@ body {
     letter-spacing: 0.02em;
 }
 
-/* Highlighted SDI Row */
-.highlight-row {
-    background-color: var(--accent-bg);
-    border: 1px solid var(--border-color);
-    padding: 10px 12px;
-}
 
-.highlight-value {
-    font-weight: 700;
-}
 
 /* Copy Button */
 .btn-copy {
@@ -165,16 +156,6 @@ body {
     border-color: var(--text-primary);
 }
 
-.btn-copy-highlight {
-    background-color: var(--bg-card);
-    border-color: var(--border-color);
-    font-weight: 600;
-}
-
-.btn-copy-highlight:hover {
-    background-color: var(--text-primary);
-    color: var(--bg-card);
-}
 
 .icon-copy, .icon-check {
     stroke-width: 2px;
