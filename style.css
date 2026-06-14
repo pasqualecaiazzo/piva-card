@@ -266,24 +266,30 @@ body {
 
 /* Mobile Stylesheet - Full Bleed 100% Vertical Height */
 @media (max-width: 480px) {
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
     body {
         padding: 0;
         background-color: var(--bg-card);
+        display: block;
     }
 
     .app-container {
         max-width: 100%;
         gap: 0;
-        height: 100vh;
-        height: -webkit-fill-available;
+        height: 100%;
+        width: 100%;
     }
 
     .card-wrapper {
         border: none;
         box-shadow: none;
         height: 100%;
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
+        width: 100%;
         padding: 24px 20px;
         display: flex;
         flex-direction: column;
@@ -294,8 +300,21 @@ body {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: 30px;
+        justify-content: space-evenly;
+        gap: 10px;
+    }
+
+    .info-grid {
+        gap: 12px;
+    }
+
+    .qr-section {
+        padding-top: 15px;
+    }
+
+    #qrcodeCanvas {
+        width: 130px !important;
+        height: 130px !important;
     }
 }
 
