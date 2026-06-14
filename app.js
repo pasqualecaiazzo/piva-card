@@ -5,7 +5,7 @@ const DEFAULT_DATA = {
     cf: "CZZGNR60B29F839A",
     sdi: "KRRH6B9",
     pec: "",
-    address: "VIA ROMA 25\n14031 GRANA MONFERRATO (AT)"
+    address: "VIA ROMA 25 - 14031\nGRANA MONFERRATO (AT)"
 };
 
 // On Page Load

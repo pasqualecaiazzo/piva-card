@@ -301,6 +301,10 @@ body {
         gap: 10px;
     }
 
+    .code-font {
+        font-size: 0.95rem;
+    }
+
     .qr-section {
         flex-shrink: 0;
         padding-top: 10px;
